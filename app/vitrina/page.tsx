@@ -6,7 +6,11 @@ interface VitrinaPageQueryParams {
   point: string
 }
 
-const VitrinaPage = async ({ searchParams }) => {
+const VitrinaPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<VitrinaPageQueryParams>
+}) => {
   const searchQuery: VitrinaPageQueryParams = await searchParams
   const products: Product[] = getProductsFromPoint(searchQuery.point)
   getProductsFromPoint(searchQuery.point)
