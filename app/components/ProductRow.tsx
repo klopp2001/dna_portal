@@ -14,7 +14,7 @@ const ProductRow = ({
   onIncrease,
 }: ProductRowProps) => {
   return (
-    <div className="flex flex-row justify-between py-2 px-2 items-center odd:bg-gray-100">
+    <div className="flex flex-row justify-between py-2 px-2 items-center odd:bg-gray-100 even:bg-white">
       <div className="max-w-2/3">{name}</div>
       <div className="flex flex-row gap-2">
         <button
