@@ -14,21 +14,22 @@ const ProductRow = ({
   onIncrease,
 }: ProductRowProps) => {
   return (
-    <div className="flex flex-row justify-between items-center odd:bg-gray-100">
+    <div className="flex flex-row justify-between py-2 px-2 items-center odd:bg-gray-100">
       <div className="max-w-2/3">{name}</div>
       <div className="flex flex-row gap-2">
         <button
-          className="bg-green-500 text-white font-bold  px-2 rounded-full"
-          onClick={onIncrease}
-        >
-          +
-        </button>
-        <div>{count}</div>
-        <button
-          className="bg-red-500 text-white font-bold  px-2 rounded-full"
+          className="bg-red-500 text-white font-bold  px-4 rounded-2xl"
           onClick={onDecrease}
         >
           -
+        </button>
+
+        <div>{count}</div>
+        <button
+          className="bg-green-500 text-white font-bold  px-4 rounded-2xl"
+          onClick={onIncrease}
+        >
+          +
         </button>
       </div>
     </div>

@@ -15,7 +15,7 @@ const VitrinaPage = async ({
   const products: Product[] = getProductsFromPoint(searchQuery.point)
   getProductsFromPoint(searchQuery.point)
   return (
-    <div className="m-2 text-lg">
+    <div className="m-2 text-lg mx-4">
       <div>Витрина: {searchQuery.point}</div>
       <ProductsList products={products} />
     </div>

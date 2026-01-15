@@ -23,9 +23,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html className="" lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white font-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  font-light  `}
       >
         {children}
       </body>
