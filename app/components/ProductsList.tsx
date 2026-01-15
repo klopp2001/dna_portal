@@ -1,6 +1,8 @@
 "use client"
 import React, { useCallback, useState } from "react"
 import ProductRow from "./ProductRow"
+import CommentModal from "./CommentModal"
+import { useLockBodyScroll } from "../hooks/hooks"
 
 export type Product = {
   name: string
@@ -13,6 +15,8 @@ interface ProductListProps {
 
 const ProductsList = ({ products }: ProductListProps) => {
   const [productsState, setProductsState] = useState<Product[]>(products)
+  const [commentModalState, setCommentModalState] = useState(false)
+  useLockBodyScroll(commentModalState)
   const increaseProduct = useCallback(
     (name: string) => {
       setProductsState(
@@ -46,6 +50,14 @@ const ProductsList = ({ products }: ProductListProps) => {
 
   return (
     <div className="flex flex-col gap-4 my-8">
+      {commentModalState && (
+        <CommentModal
+          setComent={(text) => {
+            console.log(text)
+            setCommentModalState(false)
+          }}
+        />
+      )}
       {productsState.map((product) => (
         <ProductRow
           name={product.name}
@@ -56,7 +68,9 @@ const ProductsList = ({ products }: ProductListProps) => {
       ))}
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded-full"
-        onClick={() => {}}
+        onClick={() => {
+          setCommentModalState(true)
+        }}
       >
         Добавить комментарий
       </button>
