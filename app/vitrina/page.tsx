@@ -1,5 +1,6 @@
-import React from "react"
-import ProductsList, { Product } from "../components/ProductsList"
+import ProductsListEditable, {
+  Product,
+} from "../components/ProductsListEditable"
 import { getProductsFromPoint } from "../api/actions"
 
 interface VitrinaPageQueryParams {
@@ -12,12 +13,12 @@ const VitrinaPage = async ({
   searchParams: Promise<VitrinaPageQueryParams>
 }) => {
   const searchQuery: VitrinaPageQueryParams = await searchParams
-  const products: Product[] = getProductsFromPoint(searchQuery.point)
+  const products: Product[] = await getProductsFromPoint(searchQuery.point)
   getProductsFromPoint(searchQuery.point)
   return (
     <div className="m-2 text-lg mx-4">
       <div>Витрина: {searchQuery.point}</div>
-      <ProductsList products={products} />
+      <ProductsListEditable products={products} />
     </div>
   )
 }

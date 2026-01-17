@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model employees {
+  id                    BigInt            @id @default(autoincrement())
+  name                  String            @db.VarChar(255)
+  phone_number          String?           @db.VarChar(255)
+  registered            DateTime?         @db.DateTime(6)
+  status                employees_status?
+  telegram_account_name String?           @db.VarChar(255)
+  telegram_id           String?           @db.VarChar(255)
+  shifts                shifts[]
+}
+
+model orders {
+  id            Int       @id @default(autoincrement())
+  shop_name     String    @db.VarChar(255)
+  product_name  String    @db.VarChar(255)
+  product_count Int?
+  order_date    DateTime? @db.Date
+
+  @@unique([shop_name, product_name, order_date], map: "uniq_order")
+}
+
+model shifts {
+  id            BigInt    @id @default(autoincrement())
+  comment       String?   @db.VarChar(255)
+  date          DateTime  @db.DateTime(6)
+  part_of_shift Float
+  shop_name     String    @db.VarChar(255)
+  employee_id   BigInt
+  employees     employees @relation(fields: [employee_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FKtbsbc3nmr4b1vlwtnd944q9u7")
+
+  @@index([employee_id], map: "FKtbsbc3nmr4b1vlwtnd944q9u7")
+}
+
+model shops {
+  id            BigInt   @id @default(autoincrement())
+  active_status Boolean? @db.Bit(1)
+  name          String   @db.VarChar(255)
+  sheet_url     String   @db.VarChar(255)
+}
+
+enum employees_status {
+  FIRED
+  WORKING
+}

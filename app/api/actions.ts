@@ -1,4 +1,5 @@
-import { Product } from "../components/ProductsList"
+import { prisma } from "@/lib/prisma"
+import { Product } from "../components/ProductsListEditable"
 
 const names = ["Аманн"
 ,"Бабка Кардамон"
@@ -38,11 +39,35 @@ const names = ["Аманн"
 ]
 
 //fetch(...)
-export const getProductsFromPoint = (point:string) => {
+export  const getProductsFromPoint = async (point:string) => {
     console.log(point)
+    const productsSql = await prisma.orders.findMany({
+    where: { shop_name: point },
+  })
+
     const products : Product[] = []
-    for (let name of names) {
-        products.push({name: name, quantity: 22})
+    for (let productSql of productsSql) {
+        if (productSql.product_count) {
+            products.push({name: productSql.product_name, quantity: productSql.product_count})
+        } 
     }
     return products
-} 
+}
+
+export  const getProductsFromPointAndDate = async (point:string, date:string | Date) => {
+    console.log(point)
+    const today = new Date(date)
+    const tomorow = new Date(date)
+    tomorow.setDate(tomorow.getDate() + 1)
+    const productsSql = await prisma.orders.findMany({
+    where: { shop_name: point, order_date: {gte: today, lt: tomorow} },
+  })
+
+    const products : Product[] = []
+    for (let productSql of productsSql) {
+        if (productSql.product_count) {
+            products.push({name: productSql.product_name, quantity: productSql.product_count})
+        } 
+    }
+    return products
+}

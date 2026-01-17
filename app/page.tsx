@@ -1,7 +1,9 @@
 import Image from "next/image"
 import { FormEvent } from "react"
-import ProductRow from "./components/ProductRow"
-import ProductsList, { Product } from "./components/ProductsList"
+import ProductRowEditable from "./components/ProductRowEditable"
+import ProductsListEditable, {
+  Product,
+} from "./components/ProductsListEditable"
 import { getProductsFromPoint } from "./api/actions"
 
 export default function Home() {
