@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+
 const config: Config = {
   darkMode: false, // 🔴 полностью отключаем dark:
   content: [

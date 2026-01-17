@@ -7,9 +7,9 @@ interface ProductRowProps {
 
 const ProductRow = ({ name, count }: ProductRowProps) => {
   return (
-    <div className="flex flex-row justify-between py-2 px-2 items-center odd:bg-[#eeeeee] even:bg-[#ffffff]">
+    <div className="flex flex-row justify-between px-1 odd:bg-[#eeeeee] even:bg-[#ffffff]">
       <div className="max-w-2/3">{name}</div>
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row items-start">
         <div>{count}</div>
       </div>
     </div>

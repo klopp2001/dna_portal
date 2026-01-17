@@ -31,6 +31,7 @@ const OrdersPage = async ({
       ) : (
         <FormForPoint defaultDate="" defaultPoint="" />
       )}
+      <h1>{search.point ? search.point : "Выберите точку"}</h1>
       <ProductsList products={products} />
     </div>
   )

@@ -20,7 +20,7 @@ const ProductsList = ({ products }: ProductListProps) => {
   useLockBodyScroll(commentModalState)
 
   return (
-    <div className="flex flex-col gap-4 my-8">
+    <div className="flex flex-col gap-2 my-4">
       {productsState.map((product) => (
         <ProductRow name={product.name} count={product.quantity} />
       ))}

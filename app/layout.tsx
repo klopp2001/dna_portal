@@ -1,13 +1,19 @@
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Geist, Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { prisma } from "@/lib/prisma"
+import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"], // выбери нужные подмножества
+  variable: "--font-inter", // если хочешь использовать CSS-переменную
+  display: "swap", // улучшает загрузку
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 })
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -30,9 +36,7 @@ export default async function RootLayout({
   // console.log(orders)
   return (
     <html className="" lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  font-light  `}
-      >
+      <body className={`${inter.className} antialiased mx-1 text-sm`}>
         {children}
       </body>
     </html>
