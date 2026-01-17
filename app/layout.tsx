@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import ForceLightTheme from "./components/OverrideTHThemes"
 import { prisma } from "@/lib/prisma"
 
 const geistSans = Geist({
@@ -31,9 +30,6 @@ export default async function RootLayout({
   // console.log(orders)
   return (
     <html className="" lang="en">
-      <>
-        <ForceLightTheme />
-      </>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  font-light  `}
       >
