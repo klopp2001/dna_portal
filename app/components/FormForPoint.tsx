@@ -5,11 +5,12 @@ interface FormForPointProps {
   defaultDate: string
 }
 const FormForPoint = ({ defaultPoint, defaultDate }: FormForPointProps) => {
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log("HELLO WORLD")
-    const point = event.target.elements.point.value
-    const date = event.target.elements.date.value
+    const form = event.target as HTMLFormElement
+    const point = (form.elements.namedItem("point") as HTMLInputElement).value
+    const date = (form.elements.namedItem("date") as HTMLInputElement).value
     window.location.href = `orders?point=${point}&date=${date}`
     // console.log(event.target.username.value)
     // console.log(this.inputNode.value)
