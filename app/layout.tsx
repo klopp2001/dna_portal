@@ -36,7 +36,7 @@ export default async function RootLayout({
   // console.log(orders)
   return (
     <html className="" lang="en">
-      <body className={`${inter.className} antialiased mx-1 text-sm`}>
+      <body className={`${inter.className} antialiased mx-1 text-sm bg-white`}>
         {children}
       </body>
     </html>
