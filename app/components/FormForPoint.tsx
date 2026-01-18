@@ -36,7 +36,7 @@ const FormForPoint = ({ defaultPoint, defaultDate }: FormForPointProps) => {
 
         <label>
           <input
-            className="border-[1px] rounded-md border-gray-600"
+            className="border-[1px] rounded-md border-gray-600 w-[110px]"
             type="date"
             name="date"
             defaultValue={defaultDate}
