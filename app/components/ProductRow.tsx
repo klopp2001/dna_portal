@@ -1,5 +1,7 @@
 "use client"
 
+import { Order } from "../api/types"
+
 interface ProductRowProps {
   name: string
   count: number

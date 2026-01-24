@@ -3,7 +3,11 @@ import FormForPoint from "../components/FormForPoint"
 import ProductsListEditable, {
   Product,
 } from "../components/ProductsListEditable"
-import { getProductsFromPointAndDate } from "../api/actions"
+import {
+  getAllProductsForDate,
+  getAllShopNamesForDate,
+  getProductsFromPointAndDate,
+} from "../api/actions"
 import ProductsList from "../components/ProductsList"
 
 interface OrdersPageQueryParams {
@@ -19,7 +23,24 @@ const OrdersPage = async ({
   const search = await searchParams
   console.log(search)
   let products: Product[] = []
-  if (search.point && search.date) {
+  let shopPoints: String[] = []
+
+  let shopToProducts: Map<String, Product[]> = new Map()
+
+  if (search.point == "all" && search.date) {
+    products = await getAllProductsForDate(search.date)
+    const shopNamesSet = new Set<String>()
+
+    for (const product of products) {
+      if (product.shopName) {
+        shopNamesSet.add(product.shopName)
+      }
+    }
+    shopPoints = [...shopNamesSet.values()]
+    for (let point of shopPoints) {
+      shopToProducts.set(point, await getAllProductsForDate(search.date))
+    }
+  } else if (search.point && search.date) {
     products = await getProductsFromPointAndDate(search.point, search.date)
     console.log(products)
   }
@@ -31,8 +52,14 @@ const OrdersPage = async ({
       ) : (
         <FormForPoint defaultDate="" defaultPoint="" />
       )}
+
       <h1>{search.point ? search.point : "Выберите точку"}</h1>
-      <ProductsList products={products} />
+
+      {search.point == "all" ? (
+        <ProductsList products={products} all={true} shopNames={shopPoints} />
+      ) : (
+        <ProductsList products={products} />
+      )}
     </div>
   )
 }

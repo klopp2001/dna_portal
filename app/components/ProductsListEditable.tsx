@@ -3,11 +3,13 @@ import React, { useCallback, useState } from "react"
 import ProductRowEditable from "./ProductRowEditable"
 import CommentModal from "./CommentModal"
 import { useLockBodyScroll } from "../hooks/hooks"
+import { Product } from "./ProductsList"
 
-export type Product = {
-  name: string
-  quantity: number
-}
+// export type Product = {
+//   name: string
+//   quantity: number
+//   shopName?: String | string
+// }
 
 interface ProductListProps {
   products: Product[]

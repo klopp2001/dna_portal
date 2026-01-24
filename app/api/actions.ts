@@ -60,9 +60,8 @@ export  const getProductsFromPointAndDate = async (point:string, date:string | D
     const tomorow = new Date(date)
     tomorow.setDate(tomorow.getDate() + 1)
     const productsSql = await prisma.orders.findMany({
-    where: { shop_name: point, order_date: {gte: today, lt: tomorow} },
+    where: { shop_name: point, order_date: {gte: today, lt: tomorow},  product_count: {gt: 0}},
   })
-
     const products : Product[] = []
     for (let productSql of productsSql) {
         if (productSql.product_count) {
@@ -70,4 +69,30 @@ export  const getProductsFromPointAndDate = async (point:string, date:string | D
         } 
     }
     return products
+}
+
+export const getAllProductsForDate = async (date: string| Date) => {
+    const today = new Date(date)
+    const tomorow = new Date(date)
+    tomorow.setDate(tomorow.getDate() + 1)
+
+    const productsSql = await prisma.orders.findMany(
+        { where: {  order_date: {gte: today, lt: tomorow}, product_count: {gt: 0}}}
+    )
+    const products : Product[] = []
+      for (let productSql of productsSql) {
+        if ( productSql.product_count) {
+            products.push({name: productSql.product_name, quantity: productSql.product_count, shopName: productSql.shop_name})
+        } 
+    }
+    return products   
+}
+
+export const getAllShopNamesForDate = async (date: string| Date) => {
+    const today = new Date(date)
+    const tomorow = new Date(date)
+    tomorow.setDate(tomorow.getDate() + 1)
+    const shopsSql = await prisma.orders.groupBy({
+        by: ['shop_name'],  where: { order_date: {gte: today, lt: tomorow} }})
+    return shopsSql.map((shop) => shop.shop_name)
 }
