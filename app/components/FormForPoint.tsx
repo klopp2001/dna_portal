@@ -2,7 +2,7 @@
 import React from "react"
 
 import { IoIosRefresh } from "react-icons/io"
-import { Product } from "./ProductsListEditable"
+import { Product } from "./ProductsList"
 
 interface FormForPointProps {
   defaultPoint: string

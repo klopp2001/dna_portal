@@ -1,14 +1,13 @@
 import React from "react"
 import FormForPoint from "../components/FormForPoint"
-import ProductsListEditable, {
-  Product,
-} from "../components/ProductsListEditable"
+import ProductsListEditable from "../components/ProductsListEditable"
+
 import {
   getAllProductsForDate,
   getAllShopNamesForDate,
   getProductsFromPointAndDate,
 } from "../api/actions"
-import ProductsList from "../components/ProductsList"
+import ProductsList, { Product } from "../components/ProductsList"
 
 interface OrdersPageQueryParams {
   point: string

@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma"
-import { Product } from "../components/ProductsListEditable"
+import { Product } from "../components/ProductsList"
+// import { Product } from "../components/ProductsListEditable"
 
 const names = ["Аманн"
 ,"Бабка Кардамон"
