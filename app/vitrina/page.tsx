@@ -1,7 +1,6 @@
-import ProductsListEditable, {
-  Product,
-} from "../components/ProductsListEditable"
+import ProductsListEditable from "../components/ProductsListEditable"
 import { getProductsFromPoint } from "../api/actions"
+import { Product } from "../components/ProductsList"
 
 interface VitrinaPageQueryParams {
   point: string
